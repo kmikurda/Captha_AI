@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32811.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Captha_AI", "Captha_AI\Captha_AI.csproj", "{9E4A5DFA-CBF5-45CA-9FAA-191E5987E7A0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MLModel1_WebApi1", "MLModel1_WebApi1\MLModel1_WebApi1.csproj", "{43679483-A157-4F5A-8145-E5138C56B82A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E4A5DFA-CBF5-45CA-9FAA-191E5987E7A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E4A5DFA-CBF5-45CA-9FAA-191E5987E7A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E4A5DFA-CBF5-45CA-9FAA-191E5987E7A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E4A5DFA-CBF5-45CA-9FAA-191E5987E7A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43679483-A157-4F5A-8145-E5138C56B82A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43679483-A157-4F5A-8145-E5138C56B82A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43679483-A157-4F5A-8145-E5138C56B82A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43679483-A157-4F5A-8145-E5138C56B82A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {27CC4A22-EFBC-4E54-AE58-00D151ED757C}
+	EndGlobalSection
+EndGlobal
