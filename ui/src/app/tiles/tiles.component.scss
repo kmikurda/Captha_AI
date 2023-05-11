@@ -1,0 +1,62 @@
+.tiles-container {
+  display: grid;
+  justify-content: start;
+  grid-template-rows: auto auto auto;
+  grid-template-columns: auto auto auto;
+}
+
+.tile {
+  width: 95%;
+  height: 95%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.category {
+  font-weight: bold;
+  color: #ff4081;
+}
+
+.container {
+  display: block;
+  position: relative;
+  height: 150px;
+  width: 150px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 150px;
+  width: 150px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a background */
+.container input:checked ~ .checkmark {
+  background-color: #ff4081;
+}
