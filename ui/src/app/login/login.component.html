@@ -1,0 +1,49 @@
+<mat-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Fill out your credentials</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          placeholder="mail@example.com"
+          formControlName="email"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input
+          type="password"
+          matInput
+          placeholder="password"
+          formControlName="password"
+        />
+      </mat-form-field>
+      <div>
+        <button
+          mat-raised-button
+          matStepperNext
+          [disabled]="firstFormGroup.invalid"
+        >
+          Next
+        </button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" label="Complete verification">
+    <form [formGroup]="secondFormGroup">
+      <app-tiles></app-tiles>
+      <div class="buttons">
+        <button mat-button matStepperPrevious>Back</button>
+        <button
+          mat-raised-button
+          matStepperNext
+          color="accent"
+          (click)="verify()"
+        >
+          Verify
+        </button>
+      </div>
+    </form>
+  </mat-step>
+</mat-stepper>

@@ -1,0 +1,9 @@
+::ng-deep .mat-horizontal-stepper-header {
+  pointer-events: none !important;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1.5em;
+}
