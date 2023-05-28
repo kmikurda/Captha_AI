@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Tile } from './tile';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TilesImagesService } from '../services/tiles-images.service';
 import { Subscription } from 'rxjs';
 
@@ -8,77 +7,49 @@ import { Subscription } from 'rxjs';
   templateUrl: './tiles.component.html',
   styleUrls: ['./tiles.component.scss'],
 })
-export class TilesComponent implements OnInit {
+export class TilesComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
-  // mocked images
-  tiles: Tile[] = [
-    {
-      id: 'tile1',
-      srcPath: '../../assets/images/cat_0168.jpg',
-      category: 'cat',
-    },
-    {
-      id: 'tile2',
-      srcPath: '../../assets/images/person_0656.jpg',
-      category: 'person',
-    },
-    {
-      id: 'tile3',
-      srcPath: '../../assets/images/car_0517.jpg',
-      category: 'car',
-    },
-    {
-      id: 'tile1',
-      srcPath: '../../assets/images/cat_0168.jpg',
-      category: 'cat',
-    },
-    {
-      id: 'tile2',
-      srcPath: '../../assets/images/person_0656.jpg',
-      category: 'person',
-    },
-    {
-      id: 'tile3',
-      srcPath: '../../assets/images/car_0517.jpg',
-      category: 'car',
-    },
-    {
-      id: 'tile1',
-      srcPath: '../../assets/images/cat_0168.jpg',
-      category: 'cat',
-    },
-    {
-      id: 'tile2',
-      srcPath: '../../assets/images/person_0656.jpg',
-      category: 'person',
-    },
-    {
-      id: 'tile3',
-      srcPath: '../../assets/images/car_0517.jpg',
-      category: 'car',
-    },
-  ];
+  tiles: any[] = [];
 
   selectedIds: number[] = [1];
+  category!: string;
 
   constructor(private tilesImagesService: TilesImagesService) {}
 
   ngOnInit(): void {
     this.subscription.add(
-      this.tilesImagesService.getImages().subscribe((images) => {
+      this.tilesImagesService.getImages().subscribe((images: any) => {
+        images = JSON.parse(images).map((path: string) => {
+          const parts = path.split('\\');
+          const index = parts.indexOf('natural_images');
+          if (index !== -1) {
+            const result =
+              parts.slice(index).join('\\').replace(/\\/g, '/') + '.jpg';
+            return result;
+          }
+        });
         this.tiles = images;
       })
+    );
+    this.subscription.add(
+      this.tilesImagesService
+        .getCategory()
+        .subscribe((category) => (this.category = category))
     );
   }
 
   toggleImageSelection(image: any): void {
     const index = this.tilesImagesService.selectedTiles.findIndex(
-      (selectedImage) => selectedImage.id === image.id
+      (selectedImage) => selectedImage === image
     );
     if (index === -1) {
       this.tilesImagesService.selectedTiles.push(image);
     } else {
       this.tilesImagesService.selectedTiles.splice(index, 1);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

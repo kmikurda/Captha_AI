@@ -1,27 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Tile } from '../tiles/tile';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TilesImagesService {
-  readonly api: string = 'http://localhost:3000';
-  selectedTiles: Tile[] = [];
+  readonly api: string = 'https://localhost:27527';
+  selectedTiles: any[] = [];
 
   constructor(private http: HttpClient) {}
 
-  getImages(): Observable<Tile[]> {
-    return this.http.get<Tile[]>(`${this.api}/images`);
+  getImages(): Observable<any> {
+    return this.http.get(`${this.api}/images`, { responseType: 'text' });
   }
 
-  // ??
-  getCategory(): Observable<string> {
-    return this.http.get<string>(`${this.api}/category`);
+  getCategory(): Observable<any> {
+    return this.http.get(`${this.api}/category`, { responseType: 'text' });
   }
 
   checkSelected(): Observable<any> {
-    return this.http.post(`${this.api}/verification`, this.selectedTiles);
+    const results = {
+      imageNames: this.selectedTiles.map((tile) =>
+        tile.split('/')[2].slice(0, -4)
+      ),
+    };
+    return this.http.post(`${this.api}/check`, results, {
+      responseType: 'text',
+    });
   }
 }

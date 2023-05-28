@@ -1,11 +1,13 @@
-<h3>Select all images with: <span class="category">cars</span></h3>
+<h3>
+  Select all images with: <span class="category">{{ category }}</span>
+</h3>
 <div class="tiles-container">
   <ng-container *ngFor="let tile of tiles">
     <label class="container">
       <input type="checkbox" />
       <span class="checkmark">
         <img
-          [src]="tile.srcPath"
+          [src]="tile"
           class="tile"
           draggable="false"
           (click)="toggleImageSelection(tile)"
