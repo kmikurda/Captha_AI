@@ -11,7 +11,6 @@ export class TilesComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
   tiles: any[] = [];
 
-  selectedIds: number[] = [1];
   category!: string;
 
   constructor(private tilesImagesService: TilesImagesService) {}
@@ -28,7 +27,7 @@ export class TilesComponent implements OnInit, OnDestroy {
             return result;
           }
         });
-        this.tiles = images;
+        this.tiles = this.shuffle(images);
       })
     );
     this.subscription.add(
@@ -47,6 +46,26 @@ export class TilesComponent implements OnInit, OnDestroy {
     } else {
       this.tilesImagesService.selectedTiles.splice(index, 1);
     }
+  }
+
+  shuffle(array: any[]): any[] {
+    let currentIndex = array.length,
+      randomIndex;
+
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+
+    return array;
   }
 
   ngOnDestroy(): void {
